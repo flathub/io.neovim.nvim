@@ -6,9 +6,7 @@
   <name>Neovim</name>
   <summary>Vim-fork focused on extensibility and usability</summary>
   <description>
-    <p>
-      Neovim is a refactor of the Vim text editor engineered to encourage new features, advanced UIs, and powerful extensions.
-    </p>
+    <p>Neovim is a refactor of the Vim text editor engineered to encourage new features, advanced UIs, and powerful extensions.</p>
   </description>
   <kudos>
     <kudo>UserDocs</kudo>
@@ -21,8 +19,14 @@
   <url type="help">https://neovim.io/doc/</url>
   <url type="donation">https://neovim.io/sponsors/</url>
   <url type="translate">https://github.com/neovim/neovim/tree/master/src/nvim/po</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/neovim/neovim.github.io/master/images/nvim-screenshot-1.png</image>
+    </screenshot>
+  </screenshots>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release date="2019-04-29" version="0.3.5"/>
     <release date="2019-01-13" version="0.3.4"/>
     <release date="2019-01-05" version="0.3.3"/>
     <release date="2018-12-31" version="0.3.2"/>
