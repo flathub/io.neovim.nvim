@@ -6,7 +6,6 @@ runtime-version: '18.08'
 sdk: org.freedesktop.Sdk
 
 command: nvim
-rename-appdata-file: nvim.appdata.xml
 rename-desktop-file: nvim.desktop
 rename-icon: nvim
 
@@ -201,7 +200,10 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     post-install:
-      - install -Dm644 -t /app/share/metainfo/ ../runtime/nvim.appdata.xml
+      # Install/fix AppData
+      - install -Dm644 ../runtime/nvim.appdata.xml /app/share/metainfo/$FLATPAK_ID.appdata.xml
+      - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" /app/share/metainfo/$FLATPAK_ID.appdata.xml
+      # Install/fix icons
       - mkdir -p /app/share/icons/hicolor/128x128
       - mv /app/share/pixmaps /app/share/icons/hicolor/128x128/apps
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
