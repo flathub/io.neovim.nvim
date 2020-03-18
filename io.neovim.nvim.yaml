@@ -23,8 +23,8 @@ modules:
   - name: libuv
     sources:
       - type: archive
-        url: https://github.com/libuv/libuv/archive/v1.29.1.tar.gz
-        sha256: bdde1140087ce97080ea323c3598553ece00a24ae63ac568be78bef3e97f3e25
+        url: https://github.com/libuv/libuv/archive/v1.35.0.tar.gz
+        sha256: ff84a26c79559e511f087aa67925c3b4e0f0aac60cd8039d4d38b292f208ff58
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -35,8 +35,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.2.0/msgpack-3.2.0.tar.gz
-        sha256: fbaa28c363a316fd7523f31d1745cf03eab0d1e1ea5a1c60aa0dffd4ce551afe
+        url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.2.1/msgpack-3.2.1.tar.gz
+        sha256: 433cbcd741e1813db9ae4b2e192b83ac7b1d2dd7968a3e11470eacc6f4ab58d2
     cleanup:
       - /include
       - /lib/cmake
@@ -62,6 +62,21 @@ modules:
       - /lib/pkgconfig
       - /share/man
       - '*.a'
+
+  - name: libluv
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_MODULE=OFF
+      - -DBUILD_SHARED_LIBS=ON
+      - -DWITH_SHARED_LIBUV=ON
+      - -DLUA_BUILD_TYPE=System
+    sources:
+      - type: archive
+        url: https://github.com/luvit/luv/releases/download/1.34.2-2/luv-1.34.2-2.tar.gz
+        sha256: 7aff212985527248522411c3830234fe7b5e98593a4cc439b962c17da46681d5
+    cleanup:
+      - /include
+      - /lib/pkgconfig
 
   - name: lpeg
     no-autogen: true
@@ -112,8 +127,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/neovim/libvterm/archive/7a3913a4f465fbf4f59a049f43da8d97fc573a97.tar.gz
-        sha256: c6e7f4afd455e27a9a5cd006f53d8c851d4b95e4c60bd7af98cff5f35d4ee521
+        url: https://github.com/neovim/libvterm/archive/65dbda3ed214f036ee799d18b2e693a833a0e591.tar.gz
+        sha256: 95d3c7e86336fbd40dfd7a0aa0a795320bb71bc957ea995ea0e549c96d20db3a
     cleanup:
       - /bin
       - /include
@@ -124,8 +139,8 @@ modules:
   - name: jemalloc
     sources:
       - type: archive
-        url: https://github.com/jemalloc/jemalloc/releases/download/5.2.0/jemalloc-5.2.0.tar.bz2
-        sha256: 74be9f44a60d2a99398e706baa921e4efde82bf8fd16e5c0643c375c5851e3b4
+        url: https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2
+        sha256: 34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6
     config-opts:
       - --enable-autogen
       - --disable-static
@@ -141,8 +156,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/mauke/unibilium/archive/v2.0.0.tar.gz
-        sha256: 78997d38d4c8177c60d3d0c1aa8c53fd0806eb21825b7b335b1768d7116bc1c1
+        url: https://github.com/neovim/unibilium/archive/v2.1.0.tar.gz
+        sha256: 05bf97e357615e218126f7ac086e7056a23dc013cfac71643b50a18ad390c7d4
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -167,8 +182,8 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://github.com/bugaevc/wl-clipboard/archive/v1.0.0.tar.gz
-        sha256: 9b5c1f5f67c40672324194ec11c1fcbeccc72c0cd5b6712d6c7257be252387e3
+        url: https://github.com/bugaevc/wl-clipboard/archive/v2.0.0.tar.gz
+        sha256: 2c42f182432adabe56da0f1144d5fcc40b7aae3d8e14d2bc4dc4c3f91b51808d
     cleanup:
       - /share/man
 
@@ -199,18 +214,19 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DUSE_BUNDLED=OFF
     post-install:
       # Install/fix AppData
-      - install -Dm644 ../runtime/nvim.appdata.xml /app/share/metainfo/$FLATPAK_ID.appdata.xml
-      - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" /app/share/metainfo/$FLATPAK_ID.appdata.xml
+      - install -Dm644 ../runtime/nvim.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
+      - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" /app/share/metainfo/$FLATPAK_ID.metainfo.xml
       # Install/fix icons
       - mkdir -p /app/share/icons/hicolor/128x128
       - mv /app/share/pixmaps /app/share/icons/hicolor/128x128/apps
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.3.7.tar.gz
-        sha256: 4c0f1b839ef2c8cfee63eb2a072324accf4f0c0badd2fbd087d3e7a12d538bca
+        url: https://github.com/neovim/neovim/archive/v0.4.3.tar.gz
+        sha256: 91a0b5d32204a821bf414690e6b48cf69224d1961d37158c2b383f6a6cf854d2
       - type: archive
         url: https://neovim.io/logos/neovim-logos.zip
         sha256: c899d052fb8c31b124746fc33bde5a23ff8b02d323b42a0dd8dd66b57b81d20d
