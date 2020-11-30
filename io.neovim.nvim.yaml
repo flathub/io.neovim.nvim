@@ -43,25 +43,14 @@ modules:
       - /lib/pkgconfig
       - '*.a'
 
-  - name: LuaJIT
+  - shared-modules/lua5.1/lua-5.1.5.json
+
+  - name: luabitop
     no-autogen: true
-    make-args:
-      - PREFIX=/app
-    make-install-args:
-      - PREFIX=/app
-    post-install:
-      # Beta version doesn’t link the executable
-      - ln -s luajit-2.1.0-beta3 /app/bin/luajit
     sources:
       - type: archive
-        url: https://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz
-        sha256: 1ad2e34b111c802f9d0cdf019e986909123237a28c746b21295b63c9e785d9c3
-    cleanup:
-      - /bin
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-      - '*.a'
+        url: https://bitop.luajit.org/download/LuaBitOp-1.0.2.tar.gz
+        sha512: a652050ea5c6fbeb8a28b05e2bc4a3550c854cc45f7f42c8c1b0a81f5b76773cdf061e6a839cdb339614118169e578b6e3efa5a3efbe59a2f01874b2fa2b4f2e
 
   - name: libluv
     buildsystem: cmake-ninja
@@ -215,6 +204,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DUSE_BUNDLED=OFF
+      - -DPREFER_LUA=ON
     post-install:
       # Install/fix AppData
       - install -Dm644 ../runtime/nvim.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
