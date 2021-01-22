@@ -209,6 +209,15 @@ modules:
           - /lib/pkgconfig
           - '*.la'
 
+  - name: pynvim
+    sources:
+      - type: archive
+        url: https://github.com/neovim/pynvim/archive/0.4.2.tar.gz
+        sha256: 513b56741b1140e394536e6c29bae112a35b7c3602b71ba34acf2319570e26e7
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=/app --no-deps .
+
   - name: neovim
     buildsystem: cmake-ninja
     builddir: true
