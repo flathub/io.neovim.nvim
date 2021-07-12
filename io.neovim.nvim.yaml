@@ -209,14 +209,7 @@ modules:
           - /lib/pkgconfig
           - '*.la'
 
-  - name: pynvim
-    sources:
-      - type: archive
-        url: https://github.com/neovim/pynvim/archive/refs/tags/0.4.3.tar.gz
-        sha256: e7c9de44b0201ad874a608270b7a9b10fd48bda65f49bada05815d973ca79391
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app --no-deps .
+  - 'python3-pynvim.json'
 
   - name: tree-sitter
     no-autogen: true
