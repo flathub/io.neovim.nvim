@@ -209,7 +209,7 @@ modules:
           - /lib/pkgconfig
           - '*.la'
 
-  - 'python3-pynvim.json'
+  - 'python3-pynvim.yaml'
 
   - name: tree-sitter
     no-autogen: true
