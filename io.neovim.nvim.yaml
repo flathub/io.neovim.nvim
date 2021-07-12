@@ -212,11 +212,22 @@ modules:
   - name: pynvim
     sources:
       - type: archive
-        url: https://github.com/neovim/pynvim/archive/0.4.2.tar.gz
-        sha256: 513b56741b1140e394536e6c29bae112a35b7c3602b71ba34acf2319570e26e7
+        url: https://github.com/neovim/pynvim/archive/refs/tags/0.4.3.tar.gz
+        sha256: e7c9de44b0201ad874a608270b7a9b10fd48bda65f49bada05815d973ca79391
     buildsystem: simple
     build-commands:
       - pip3 install --prefix=/app --no-deps .
+
+  - name: tree-sitter
+    no-autogen: true
+    make-install-args:
+      - PREFIX=/app
+    sources:
+      - type: archive
+        url: https://github.com/tree-sitter/tree-sitter/archive/refs/tags/v0.20.0.tar.gz
+        sha256: 4a8070b9de17c3b8096181fe8530320ab3e8cca685d8bee6a3e8d164b5fb47da
+    cleanup:
+      - /lib/pkgconfig
 
   - name: neovim
     buildsystem: cmake-ninja
@@ -230,12 +241,11 @@ modules:
       - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" /app/share/metainfo/$FLATPAK_ID.metainfo.xml
       # Install/fix icons
       - mkdir -p /app/share/icons/hicolor/128x128
-      - mv /app/share/pixmaps /app/share/icons/hicolor/128x128/apps
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.4.4.tar.gz
-        sha256: 2f76aac59363677f37592e853ab2c06151cca8830d4b3fe4675b4a52d41fc42c
+        url: https://github.com/neovim/neovim/archive/v0.5.0.tar.gz
+        sha256: 2294caa9d2011996499fbd70e4006e4ef55db75b99b6719154c09262e23764ef
         x-checker-data:
           type: anitya
           project-id: 9037
