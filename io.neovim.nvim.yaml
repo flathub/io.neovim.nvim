@@ -236,7 +236,6 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DUSE_BUNDLED=OFF
-      - -DPREFER_LUA=ON
     post-install:
       # Install/fix AppData
       - install -Dm644 ../runtime/nvim.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
