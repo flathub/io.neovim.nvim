@@ -43,7 +43,26 @@ modules:
       - /lib/pkgconfig
       - '*.a'
 
-  - shared-modules/lua5.1/lua-5.1.5.json
+  - name: LuaJIT
+    no-autogen: true
+    make-args:
+      - PREFIX=/app
+    make-install-args:
+      - PREFIX=/app
+    post-install:
+      # Beta version doesn’t link the executable
+      - ln -s luajit-2.1.0-beta3 /app/bin/luajit
+    sources:
+      - type: git
+        url: https://github.com/LuaJIT/LuaJIT.git
+        branch: v2.1
+        commit: 8ff09d9f5ad5b037926be2a50dc32b681c5e7597
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+      - '*.a'
 
   - name: luabitop
     no-autogen: true
