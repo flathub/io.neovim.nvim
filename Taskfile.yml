@@ -1,0 +1,23 @@
+---
+# https://taskfile.dev
+version: '3'
+
+tasks:
+  build:
+    desc: 'Build the Flatpak'
+    cmds:
+      - flatpak-builder build-dir --repo=repo --force-clean io.neovim.nvim.yaml
+
+  flatpak:
+    desc: 'Generate .flatpak artifact'
+    deps:
+      - build
+    cmds:
+      - flatpak build-bundle repo io.neovim.nvim.flatpak io.neovim.nvim
+
+  clean:
+    desc: 'Clean up build directories and artifacts'
+    cmds:
+      - rm -rf build-dir
+      - rm -rf .flatpak-builder
+...

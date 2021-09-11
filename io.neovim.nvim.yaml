@@ -5,7 +5,9 @@ runtime: org.freedesktop.Sdk
 runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
 
-command: nvim
+command: /app/nvim.sh
+
+desktop-file-name-suffix: ' (Flatpak)'
 rename-desktop-file: nvim.desktop
 rename-icon: nvim
 
@@ -256,3 +258,15 @@ modules:
       - type: archive
         url: https://neovim.io/logos/neovim-logos.zip
         sha256: c899d052fb8c31b124746fc33bde5a23ff8b02d323b42a0dd8dd66b57b81d20d
+
+  - name: nvim-shim
+    buildsystem: simple
+    sources:
+      - type: file
+        path: nvim.sh
+      - type: file
+        path: flatpak-warning.txt
+    build-commands:
+      - install -m 755 -D nvim.sh /app/nvim.sh
+      - install -m 644 -D flatpak-warning.txt /app/share/neovim/flatpak-warning.txt
+...
