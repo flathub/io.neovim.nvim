@@ -269,6 +269,6 @@ modules:
     config-opts:
       - -Deditor_binary=/app/bin/nvim
       - -Dprogram_name=nvim-wrapper
-      - -Deditor_title=Neo Vim
+      - -Deditor_title=Neovim
       - -Dfirst_run_template=neovim-first-run.txt
       - -Dflagfile_prefix=flatpak-neovim
