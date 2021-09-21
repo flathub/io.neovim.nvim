@@ -2,7 +2,7 @@
 app-id: io.neovim.nvim
 
 runtime: org.freedesktop.Sdk
-runtime-version: '20.08'
+runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 
 command: nvim
@@ -23,8 +23,8 @@ modules:
   - name: libuv
     sources:
       - type: archive
-        url: https://github.com/libuv/libuv/archive/v1.40.0.tar.gz
-        sha256: 70fe1c9ba4f2c509e8166c0ca2351000237da573bb6c82092339207a9715ba6b
+        url: https://github.com/libuv/libuv/archive/v1.42.0.tar.gz
+        sha256: 371e5419708f6aaeb8656671f89400b92a9bba6443369af1bb70bcd6e4b3c764
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -35,8 +35,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.3.0/msgpack-3.3.0.tar.gz
-        sha256: 6e114d12a5ddb8cb11f669f83f32246e484a8addd0ce93f274996f1941c1f07b
+        url: https://github.com/msgpack/msgpack-c/releases/download/c-4.0.0/msgpack-c-4.0.0.tar.gz
+        sha256: 420fe35e7572f2a168d17e660ef981a589c9cbe77faa25eb34a520e1fcc032c8
     cleanup:
       - /include
       - /lib/cmake
@@ -80,8 +80,8 @@ modules:
       - -DLUA_BUILD_TYPE=System
     sources:
       - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.36.0-0/luv-1.36.0-0.tar.gz
-        sha256: f2e7eb372574f25c6978c1dc74280d22efdcd7df2dda4a286c7fe7dceda26445
+        url: https://github.com/luvit/luv/releases/download/1.42.0-0/luv-1.42.0-0.tar.gz
+        sha256: b5228a9d0eaacd9f862b6270c732d5c90773a28ce53b6d9e32a14050e7947f36
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -164,8 +164,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/neovim/unibilium/archive/v2.1.0.tar.gz
-        sha256: 05bf97e357615e218126f7ac086e7056a23dc013cfac71643b50a18ad390c7d4
+        url: https://github.com/neovim/unibilium/archive/v2.1.1.tar.gz
+        sha256: 6f0ee21c8605340cfbb458cbd195b4d074e6d16dd0c0e12f2627ca773f3cabf1
     cleanup:
       - /include
       - /lib/pkgconfig
