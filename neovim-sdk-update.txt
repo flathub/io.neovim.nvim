@@ -1,0 +1,11 @@
+
+https://www.flathub.org
+
+------------------------------------------------------------------------------------
+| Warning: You are running an unofficial Flatpak version of @EDITOR_TITLE@ !!! |
+------------------------------------------------------------------------------------
+
+Please open issues under: https://github.com/flathub/@FLATPAK_ID@/issues
+
+This flatpak has just received an update to its runtime! If you had any SDK extensions enabled
+they will also need to be updated to work properly with @EDITOR_TITLE@.

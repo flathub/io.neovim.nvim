@@ -266,9 +266,12 @@ modules:
         path: wrapper
       - type: file
         path: neovim-first-run.txt
+      - type: file
+        path: neovim-sdk-update.txt
     config-opts:
       - -Deditor_binary=/app/bin/nvim
       - -Dprogram_name=nvim-wrapper
       - -Deditor_title=Neovim
       - -Dfirst_run_template=neovim-first-run.txt
+      - -Dsdk_update_template=neovim-sdk-update.txt
       - -Dflagfile_prefix=flatpak-neovim
