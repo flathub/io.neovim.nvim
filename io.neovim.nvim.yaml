@@ -5,7 +5,7 @@ runtime: org.freedesktop.Sdk
 runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
 
-command: nvim
+command: nvim-wrapper
 rename-desktop-file: nvim.desktop
 rename-icon: nvim
 
@@ -253,6 +253,25 @@ modules:
           url-template: https://github.com/neovim/neovim/archive/v$version.tar.gz
       - type: patch
         path: fix-appdata-releases-version.patch
+      - type: patch
+        path: nvim.desktop-exec-wrapper.patch
       - type: archive
         url: https://neovim.io/logos/neovim-logos.zip
         sha256: c899d052fb8c31b124746fc33bde5a23ff8b02d323b42a0dd8dd66b57b81d20d
+
+  - name: wrapper
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: wrapper
+      - type: file
+        path: neovim-first-run.txt
+      - type: file
+        path: neovim-sdk-update.txt
+    config-opts:
+      - -Deditor_binary=/app/bin/nvim
+      - -Dprogram_name=nvim-wrapper
+      - -Deditor_title=Neovim
+      - -Dfirst_run_template=neovim-first-run.txt
+      - -Dsdk_update_template=neovim-sdk-update.txt
+      - -Dflagfile_prefix=flatpak-neovim

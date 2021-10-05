@@ -1,0 +1,15 @@
+diff --git a/runtime/nvim.desktop b/runtime/nvim.desktop
+index 052904dd7..b6768258b 100644
+--- a/runtime/nvim.desktop
++++ b/runtime/nvim.desktop
+@@ -74,8 +74,8 @@ Comment[vi]=Soạn thảo tập tin văn bản
+ Comment[wa]=Asspougnî des fitchîs tecses
+ Comment[zh_CN]=编辑文本文件
+ Comment[zh_TW]=編輯文字檔
+-TryExec=nvim
+-Exec=nvim %F
++TryExec=nvim-wrapper
++Exec=nvim-wrapper %F
+ Terminal=true
+ Type=Application
+ Keywords=Text;editor;
