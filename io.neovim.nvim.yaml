@@ -11,6 +11,8 @@ rename-icon: nvim
 finish-args:
   # Edit anything
   - --filesystem=host
+  - --filesystem=/tmp
+  - --filesystem=/var/tmp
   # Plugin updates
   - --share=network
   # Clipboard access
