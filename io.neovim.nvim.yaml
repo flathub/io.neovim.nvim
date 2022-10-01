@@ -246,8 +246,8 @@ modules:
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.7.0.tar.gz
-        sha256: 792a9c55d5d5f4a5148d475847267df309d65fb20f05523f21c1319ea8a6c7df
+        url: https://github.com/neovim/neovim/archive/v0.8.0.tar.gz
+        sha256: 505e3dfb71e2f73495c737c034a416911c260c0ba9fd2092c6be296655be4d18
         x-checker-data:
           type: anitya
           project-id: 9037
