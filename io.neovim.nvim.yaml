@@ -1,7 +1,7 @@
 app-id: io.neovim.nvim
 
 runtime: org.freedesktop.Sdk
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 
 command: nvim-wrapper
@@ -24,8 +24,8 @@ modules:
   - name: libuv
     sources:
       - type: archive
-        url: https://github.com/libuv/libuv/archive/v1.42.0.tar.gz
-        sha256: 371e5419708f6aaeb8656671f89400b92a9bba6443369af1bb70bcd6e4b3c764
+        url: https://github.com/libuv/libuv/archive/v1.44.2.tar.gz
+        sha256: e6e2ba8b4c349a4182a33370bb9be5e23c51b32efb9b9e209d0e8556b73a48da
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -81,8 +81,8 @@ modules:
       - -DLUA_BUILD_TYPE=System
     sources:
       - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.42.0-0/luv-1.42.0-0.tar.gz
-        sha256: b5228a9d0eaacd9f862b6270c732d5c90773a28ce53b6d9e32a14050e7947f36
+        url: https://github.com/luvit/luv/releases/download/1.43.0-0/luv-1.43.0-0.tar.gz
+        sha256: 567a6f3dcdcf8a9b54ddc57ffef89d1e950d72832b85ee81c8c83a9d4e0e9de2
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -136,8 +136,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/neovim/libvterm/archive/65dbda3ed214f036ee799d18b2e693a833a0e591.tar.gz
-        sha256: 95d3c7e86336fbd40dfd7a0aa0a795320bb71bc957ea995ea0e549c96d20db3a
+        url: https://www.leonerd.org.uk/code/libvterm/libvterm-0.3.tar.gz
+        sha256: 61eb0d6628c52bdf02900dfd4468aa86a1a7125228bab8a67328981887483358
     cleanup:
       - /bin
       - /include
@@ -241,22 +241,20 @@ modules:
       # Install/fix AppData
       - install -Dm644 ../runtime/nvim.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
       - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" /app/share/metainfo/$FLATPAK_ID.metainfo.xml
-      # Install/fix icons
-      - mkdir -p /app/share/icons/hicolor/128x128
+      # Install icon
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.7.0.tar.gz
-        sha256: 792a9c55d5d5f4a5148d475847267df309d65fb20f05523f21c1319ea8a6c7df
+        url: https://github.com/neovim/neovim/archive/v0.8.0.tar.gz
+        sha256: 505e3dfb71e2f73495c737c034a416911c260c0ba9fd2092c6be296655be4d18
         x-checker-data:
           type: anitya
           project-id: 9037
           url-template: https://github.com/neovim/neovim/archive/v$version.tar.gz
       - type: patch
         path: nvim.desktop-exec-wrapper.patch
-      - type: archive
-        url: https://neovim.io/logos/neovim-logos.zip
-        sha256: c899d052fb8c31b124746fc33bde5a23ff8b02d323b42a0dd8dd66b57b81d20d
+      - type: file
+        path: neovim-mark.svg
 
   - name: wrapper
     buildsystem: meson
