@@ -24,19 +24,8 @@ finish-args:
 modules:
 
   # deps from https://github.com/neovim/neovim/blob/v0.8.0/cmake.deps/CMakeLists.txt
-
-  - name: msgpack-c
-    buildsystem: cmake-ninja
-    sources:
-      - type: archive
-        url: https://github.com/msgpack/msgpack-c/releases/download/c-4.0.0/msgpack-c-4.0.0.tar.gz
-        sha256: 420fe35e7572f2a168d17e660ef981a589c9cbe77faa25eb34a520e1fcc032c8
-    cleanup:
-      - /include
-      - /lib/cmake
-      - /lib/pkgconfig
-      - '*.a'
-
+  
+  # lua deps
   - name: LuaJIT
     no-autogen: true
     make-args:
@@ -101,21 +90,6 @@ modules:
         cleanup:
           - '*'
 
-  - name: libvterm
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: archive
-        url: https://www.leonerd.org.uk/code/libvterm/libvterm-0.3.tar.gz
-        sha256: 61eb0d6628c52bdf02900dfd4468aa86a1a7125228bab8a67328981887483358
-    cleanup:
-      - /bin
-      - /include
-      - /lib/pkgconfig
-      - '*.a'
-      - '*.la'
-
   - name: luv
     buildsystem: cmake-ninja
     config-opts:
@@ -147,6 +121,20 @@ modules:
               project-id: 10784
               url-template: https://github.com/libuv/libuv/archive/v$version.tar.gz
 
+  # lua deps end
+
+  - name: msgpack-c
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/msgpack/msgpack-c/releases/download/c-4.0.0/msgpack-c-4.0.0.tar.gz
+        sha256: 420fe35e7572f2a168d17e660ef981a589c9cbe77faa25eb34a520e1fcc032c8
+    cleanup:
+      - /include
+      - /lib/cmake
+      - /lib/pkgconfig
+      - '*.a'
+
   - name: unibilium
     no-autogen: true
     make-install-args:
@@ -160,6 +148,22 @@ modules:
       - /lib/pkgconfig
       - /share/man
       - '*.la'
+
+  - name: libvterm
+    no-autogen: true
+    make-install-args:
+      - PREFIX=/app
+    sources:
+      - type: archive
+        url: https://www.leonerd.org.uk/code/libvterm/libvterm-0.3.tar.gz
+        sha256: 61eb0d6628c52bdf02900dfd4468aa86a1a7125228bab8a67328981887483358
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - '*.a'
+      - '*.la'
+
 
   - name: libtermkey
     no-autogen: true
