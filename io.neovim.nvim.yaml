@@ -6,6 +6,7 @@ sdk: org.freedesktop.Sdk
 
 command: nvim-wrapper
 rename-desktop-file: nvim.desktop
+rename-appdata-file: nvim.appdata.xml
 rename-icon: nvim
 
 finish-args:
@@ -21,29 +22,10 @@ finish-args:
   - --share=ipc
 
 modules:
-  - name: libuv
-    sources:
-      - type: archive
-        url: https://github.com/libuv/libuv/archive/v1.44.2.tar.gz
-        sha256: e6e2ba8b4c349a4182a33370bb9be5e23c51b32efb9b9e209d0e8556b73a48da
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - '*.a'
-      - '*.la'
 
-  - name: msgpack-c
-    buildsystem: cmake-ninja
-    sources:
-      - type: archive
-        url: https://github.com/msgpack/msgpack-c/releases/download/c-4.0.0/msgpack-c-4.0.0.tar.gz
-        sha256: 420fe35e7572f2a168d17e660ef981a589c9cbe77faa25eb34a520e1fcc032c8
-    cleanup:
-      - /include
-      - /lib/cmake
-      - /lib/pkgconfig
-      - '*.a'
-
+  # deps from https://github.com/neovim/neovim/blob/v0.8.0/cmake.deps/CMakeLists.txt
+  
+  # lua deps
   - name: LuaJIT
     no-autogen: true
     make-args:
@@ -54,38 +36,16 @@ modules:
       # Beta version doesn’t link the executable
       - ln -s luajit-2.1.0-beta3 /app/bin/luajit
     sources:
-      - type: archive
-        only-arches:
-          - x86_64
-        url: https://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz
-        sha256: 1ad2e34b111c802f9d0cdf019e986909123237a28c746b21295b63c9e785d9c3
       - type: git
-        only-arches:
-          - aarch64
         url: https://github.com/LuaJIT/LuaJIT.git
         # v2.1 branch
-        commit: 8ff09d9f5ad5b037926be2a50dc32b681c5e7597
+        commit: 6c4826f12c4d33b8b978004bc681eb1eef2be977
     cleanup:
       - /bin
       - /include
       - /lib/pkgconfig
       - /share/man
       - '*.a'
-
-  - name: libluv
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DBUILD_MODULE=OFF
-      - -DBUILD_SHARED_LIBS=ON
-      - -DWITH_SHARED_LIBUV=ON
-      - -DLUA_BUILD_TYPE=System
-    sources:
-      - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.43.0-0/luv-1.43.0-0.tar.gz
-        sha256: 567a6f3dcdcf8a9b54ddc57ffef89d1e950d72832b85ee81c8c83a9d4e0e9de2
-    cleanup:
-      - /include
-      - /lib/pkgconfig
 
   - name: lpeg
     no-autogen: true
@@ -130,6 +90,65 @@ modules:
         cleanup:
           - '*'
 
+  - name: luv
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_MODULE=OFF
+      - -DBUILD_SHARED_LIBS=ON
+      - -DWITH_SHARED_LIBUV=ON
+      - -DLUA_BUILD_TYPE=System
+    sources:
+      - type: archive
+        url: https://github.com/luvit/luv/releases/download/1.44.2-1/luv-1.44.2-1.tar.gz
+        sha256: 3eb5c7bc44f61fbc4148ea30e3221d410263e0ffa285672851fc19debf9e5c30
+        x-checker-data:
+          type: anitya
+          project-id: 21510
+          url-template: https://github.com/luvit/luv/releases/download/$version/luv-$version.tar.gz
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - '*.a'
+      - '*.la'
+    modules:
+      - name: libuv
+        sources:
+          - type: archive
+            url: https://github.com/libuv/libuv/archive/v1.44.2.tar.gz
+            sha256: e6e2ba8b4c349a4182a33370bb9be5e23c51b32efb9b9e209d0e8556b73a48da
+            x-checker-data:
+              type: anitya
+              project-id: 10784
+              url-template: https://github.com/libuv/libuv/archive/v$version.tar.gz
+
+  # lua deps end
+
+  - name: msgpack-c
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/msgpack/msgpack-c/releases/download/c-4.0.0/msgpack-c-4.0.0.tar.gz
+        sha256: 420fe35e7572f2a168d17e660ef981a589c9cbe77faa25eb34a520e1fcc032c8
+    cleanup:
+      - /include
+      - /lib/cmake
+      - /lib/pkgconfig
+      - '*.a'
+
+  - name: unibilium
+    no-autogen: true
+    make-install-args:
+      - PREFIX=/app
+    sources:
+      - type: archive
+        url: https://github.com/neovim/unibilium/archive/v2.1.1.tar.gz
+        sha256: 6f0ee21c8605340cfbb458cbd195b4d074e6d16dd0c0e12f2627ca773f3cabf1
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+      - '*.la'
+
   - name: libvterm
     no-autogen: true
     make-install-args:
@@ -145,33 +164,6 @@ modules:
       - '*.a'
       - '*.la'
 
-  - name: jemalloc
-    sources:
-      - type: archive
-        url: https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2
-        sha256: 34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6
-    config-opts:
-      - --enable-autogen
-      - --disable-static
-    cleanup:
-      - /bin
-      - /include
-      - /lib/pkgconfig
-      - /share
-
-  - name: unibilium
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: archive
-        url: https://github.com/neovim/unibilium/archive/v2.1.1.tar.gz
-        sha256: 6f0ee21c8605340cfbb458cbd195b4d074e6d16dd0c0e12f2627ca773f3cabf1
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-      - '*.la'
 
   - name: libtermkey
     no-autogen: true
@@ -189,10 +181,18 @@ modules:
 
   - name: wl-clipboard
     buildsystem: meson
+    config-opts:
+      - -Dzshcompletiondir=no
+      - -Dfishcompletiondir=no
     sources:
       - type: archive
-        url: https://github.com/bugaevc/wl-clipboard/archive/v2.0.0.tar.gz
-        sha256: 2c42f182432adabe56da0f1144d5fcc40b7aae3d8e14d2bc4dc4c3f91b51808d
+        url: https://github.com/bugaevc/wl-clipboard/archive/v2.1.0.tar.gz
+        sha256: 72dab9a7d3835c76d6ff2089f15ffec9e064a321e5f3cbbe961a8fa81aff5573
+        x-checker-data:
+          type: anitya
+          project-id: 49082
+          url-template: https://github.com/bugaevc/wl-clipboard/archive/v$version.tar.gz
+
     cleanup:
       - /share/man
 
@@ -226,8 +226,13 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/tree-sitter/tree-sitter/archive/refs/tags/v0.20.0.tar.gz
-        sha256: 4a8070b9de17c3b8096181fe8530320ab3e8cca685d8bee6a3e8d164b5fb47da
+        url: https://github.com/tree-sitter/tree-sitter/archive/v0.20.7.tar.gz
+        sha256: b355e968ec2d0241bbd96748e00a9038f83968f85d822ecb9940cbe4c42e182e
+        x-checker-data:
+          type: anitya
+          project-id: 142464
+          url-template: https://github.com/tree-sitter/tree-sitter/archive/v$version.tar.gz
+
     cleanup:
       - /lib/pkgconfig
 
@@ -239,20 +244,21 @@ modules:
       - -DUSE_BUNDLED=OFF
     post-install:
       # Install/fix AppData
-      - install -Dm644 ../runtime/nvim.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
-      - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" /app/share/metainfo/$FLATPAK_ID.metainfo.xml
+      - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
+      - install -Dm644 ../runtime/nvim.appdata.xml -t /app/share/metainfo
       # Install icon
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
+      # Set desktop
+      - desktop-file-edit --set-key=Exec --set-value=nvim-wrapper /app/share/applications/nvim.desktop
     sources:
       - type: archive
         url: https://github.com/neovim/neovim/archive/v0.8.0.tar.gz
         sha256: 505e3dfb71e2f73495c737c034a416911c260c0ba9fd2092c6be296655be4d18
         x-checker-data:
+          is-main-source: true
           type: anitya
           project-id: 9037
           url-template: https://github.com/neovim/neovim/archive/v$version.tar.gz
-      - type: patch
-        path: nvim.desktop-exec-wrapper.patch
       - type: file
         path: neovim-mark.svg
 
