@@ -24,7 +24,6 @@ finish-args:
 modules:
 
   # deps from https://github.com/neovim/neovim/blob/v0.8.0/cmake.deps/CMakeLists.txt
-  
   # lua deps
   - name: LuaJIT
     no-autogen: true
@@ -252,8 +251,8 @@ modules:
       - desktop-file-edit --set-key=Exec --set-value=nvim-wrapper /app/share/applications/nvim.desktop
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.8.0.tar.gz
-        sha256: 505e3dfb71e2f73495c737c034a416911c260c0ba9fd2092c6be296655be4d18
+        url: https://github.com/neovim/neovim/archive/v0.8.2.tar.gz
+        sha256: c516c8db73e1b12917a6b2e991b344d0914c057cef8266bce61a2100a28ffcc9
         x-checker-data:
           is-main-source: true
           type: anitya
