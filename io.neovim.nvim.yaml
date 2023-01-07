@@ -21,6 +21,13 @@ finish-args:
   - --socket=fallback-x11
   - --share=ipc
 
+add-extensions:
+  io.neovim.nvim.tool:
+    directory: tools
+    subdirectories: true
+    add-ld-path: lib
+    no-autodownload: true
+
 modules:
 
   # deps from https://github.com/neovim/neovim/blob/v0.8.0/cmake.deps/CMakeLists.txt
@@ -249,6 +256,8 @@ modules:
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
       # Set desktop
       - desktop-file-edit --set-key=Exec --set-value=nvim-wrapper /app/share/applications/nvim.desktop
+      # Create directory for tool
+      - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
         url: https://github.com/neovim/neovim/archive/v0.8.2.tar.gz
