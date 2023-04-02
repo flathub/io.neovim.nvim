@@ -286,3 +286,4 @@ modules:
       - -Dfirst_run_template=neovim-first-run.txt
       - -Dsdk_update_template=neovim-sdk-update.txt
       - -Dflagfile_prefix=flatpak-neovim
+      - -Ddefault_loglevel=0
