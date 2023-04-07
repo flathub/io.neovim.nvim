@@ -232,8 +232,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/tree-sitter/tree-sitter/archive/v0.20.7.tar.gz
-        sha256: b355e968ec2d0241bbd96748e00a9038f83968f85d822ecb9940cbe4c42e182e
+        url: https://github.com/tree-sitter/tree-sitter/archive/v0.20.8.tar.gz
+        sha256: 6181ede0b7470bfca37e293e7d5dc1d16469b9485d13f13a605baec4a8b1f791
         x-checker-data:
           type: anitya
           project-id: 142464
@@ -260,8 +260,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.8.3.tar.gz
-        sha256: adf45ff160e1d89f519b6114732eba03485ae469beb27919b0f7a4f6b44233c1
+        url: https://github.com/neovim/neovim/archive/v0.9.0.tar.gz
+        sha256: 39d79107c54d2f3babcad2cd157c399241c04f6e75e98c18e8afaf2bb5e82937
         x-checker-data:
           is-main-source: true
           type: anitya
