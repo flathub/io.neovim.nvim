@@ -260,8 +260,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.8.2.tar.gz
-        sha256: c516c8db73e1b12917a6b2e991b344d0914c057cef8266bce61a2100a28ffcc9
+        url: https://github.com/neovim/neovim/archive/v0.8.3.tar.gz
+        sha256: adf45ff160e1d89f519b6114732eba03485ae469beb27919b0f7a4f6b44233c1
         x-checker-data:
           is-main-source: true
           type: anitya
@@ -286,3 +286,4 @@ modules:
       - -Dfirst_run_template=neovim-first-run.txt
       - -Dsdk_update_template=neovim-sdk-update.txt
       - -Dflagfile_prefix=flatpak-neovim
+      - -Ddefault_loglevel=0
