@@ -256,13 +256,13 @@ modules:
       # Install icon
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
       # Set desktop
-      - desktop-file-edit --set-key=Exec --set-value=nvim-wrapper /app/share/applications/nvim.desktop
+      - desktop-file-edit --set-key=Exec --set-value="nvim-wrapper %F" /app/share/applications/nvim.desktop
       # Create directory for tool
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.9.2.tar.gz
-        sha256: 06b8518bad4237a28a67a4fbc16ec32581f35f216b27f4c98347acee7f5fb369
+        url: https://github.com/neovim/neovim/archive/v0.9.4.tar.gz
+        sha256: 148356027ee8d586adebb6513a94d76accc79da9597109ace5c445b09d383093
         x-checker-data:
           is-main-source: true
           type: anitya
