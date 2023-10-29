@@ -255,7 +255,7 @@ modules:
       # Install icon
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
       # Set desktop
-      - desktop-file-edit --set-key=Exec --set-value=nvim-wrapper /app/share/applications/nvim.desktop
+      - desktop-file-edit --set-key=Exec --set-value="nvim-wrapper %F" /app/share/applications/nvim.desktop
       # Create directory for tool
       - install -d "${FLATPAK_DEST}/tools"
     sources:
