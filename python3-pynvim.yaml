@@ -6,8 +6,8 @@ build-commands:
     --prefix=${FLATPAK_DEST} "pynvim" --no-build-isolation
 sources:
   - type: file
-    url: https://files.pythonhosted.org/packages/b6/02/47dbd5e1c9782e6d3f58187fa10789e308403f3fc3a490b3646b2bff6d9f/greenlet-3.0.0.tar.gz
-    sha256: 19834e3f91f485442adc1ee440171ec5d9a4840a1f7bd5ed97833544719ce10b
+    url: https://files.pythonhosted.org/packages/17/14/3bddb1298b9a6786539ac609ba4b7c9c0842e12aa73aaa4d8d73ec8f8185/greenlet-3.0.3.tar.gz
+    sha256: 43374442353259554ce33599da8b692d5aa96f8976d567d4badf263371fbe491
     x-checker-data:
       name: greenlet
       type: pypi
@@ -18,8 +18,8 @@ sources:
       name: msgpack
       type: pypi
   - type: file
-    url: https://files.pythonhosted.org/packages/7a/01/2d0898ba6cefbe2736283ee3155cba1c602de641ca5667ac55a0e4857276/pynvim-0.4.3.tar.gz
-    sha256: 3a795378bde5e8092fbeb3a1a99be9c613d2685542f1db0e5c6fd467eed56dff
+    url: https://files.pythonhosted.org/packages/ce/17/259ab6acfb3fc85e209a649b0de1800c50f875bb946ac9df050827da8970/pynvim-0.5.0.tar.gz
+    sha256: e80a11f6f5d194c6a47bea4135b90b55faca24da3544da7cf4a5f7ba8fb09215
     x-checker-data:
       name: pynvim
       type: pypi
