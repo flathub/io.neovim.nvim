@@ -120,8 +120,8 @@ modules:
       - name: libuv
         sources:
           - type: archive
-            url: https://github.com/libuv/libuv/archive/v1.46.0.tar.gz
-            sha256: 7aa66be3413ae10605e1f5c9ae934504ffe317ef68ea16fdaa83e23905c681bd
+            url: https://github.com/libuv/libuv/archive/v1.47.0.tar.gz
+            sha256: d50af7e6d72526db137e66fad812421c8a1cae09d146b0ec2bb9a22c5f23ba93
             x-checker-data:
               type: anitya
               project-id: 10784
@@ -260,8 +260,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.9.4.tar.gz
-        sha256: 148356027ee8d586adebb6513a94d76accc79da9597109ace5c445b09d383093
+        url: https://github.com/neovim/neovim/archive/v0.9.5.tar.gz
+        sha256: fe74369fc30a32ec7a086b1013acd0eacd674e7570eb1acc520a66180c9e9719
         x-checker-data:
           is-main-source: true
           type: anitya
