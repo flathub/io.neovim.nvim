@@ -105,8 +105,8 @@ modules:
       - -DLUA_BUILD_TYPE=System
     sources:
       - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.45.0-0/luv-1.45.0-0.tar.gz
-        sha256: fa6c46fb09f88320afa7f88017efd7b0d2b3a0158c5ba5b6851340b0332a2b81
+        url: https://github.com/luvit/luv/releases/download/1.48.0-2/luv-1.48.0-2.tar.gz
+        sha256: 2c3a1ddfebb4f6550293a40ee789f7122e97647eede51511f57203de48c03b7a
         x-checker-data:
           type: anitya
           project-id: 21510
@@ -120,8 +120,8 @@ modules:
       - name: libuv
         sources:
           - type: archive
-            url: https://github.com/libuv/libuv/archive/v1.47.0.tar.gz
-            sha256: d50af7e6d72526db137e66fad812421c8a1cae09d146b0ec2bb9a22c5f23ba93
+            url: https://github.com/libuv/libuv/archive/v1.48.0.tar.gz
+            sha256: 8c253adb0f800926a6cbd1c6576abae0bc8eb86a4f891049b72f9e5b7dc58f33
             x-checker-data:
               type: anitya
               project-id: 10784
@@ -232,8 +232,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/tree-sitter/tree-sitter/archive/v0.20.8.tar.gz
-        sha256: 6181ede0b7470bfca37e293e7d5dc1d16469b9485d13f13a605baec4a8b1f791
+        url: https://github.com/tree-sitter/tree-sitter/archive/v0.22.6.tar.gz
+        sha256: e2b687f74358ab6404730b7fb1a1ced7ddb3780202d37595ecd7b20a8f41861f
         x-checker-data:
           type: anitya
           project-id: 142464
@@ -260,8 +260,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.9.5.tar.gz
-        sha256: fe74369fc30a32ec7a086b1013acd0eacd674e7570eb1acc520a66180c9e9719
+        url: https://github.com/neovim/neovim/archive/v0.10.0.tar.gz
+        sha256: 372ea2584b0ea2a5a765844d95206bda9e4a57eaa1a2412a9a0726bab750f828
         x-checker-data:
           is-main-source: true
           type: anitya
