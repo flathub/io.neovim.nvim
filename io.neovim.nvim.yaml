@@ -38,9 +38,9 @@ modules:
       - PREFIX=/app
     make-install-args:
       - PREFIX=/app
-    post-install:
-      # Beta version doesn’t link the executable
-      - ln -s luajit-2.1.0-beta3 /app/bin/luajit
+    # post-install:
+    #   # Beta version doesn’t link the executable
+    #   - ln -s luajit-2.1.0-beta3 /app/bin/luajit
     sources:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
@@ -63,8 +63,8 @@ modules:
       - install -Dm644 -t /app/share/lua/5.1/ re.lua
     sources:
       - type: archive
-        url: https://github.com/neovim/deps/raw/d495ee6f79e7962a53ad79670cb92488abe0b9b4/opt/lpeg-1.1.0.tar.gz
-        sha256: 4b155d67d2246c1ffa7ad7bc466c1ea899bbc40fef0257cc9c03cecbaed4352a
+        url: http://www.inf.puc-rio.br/~roberto/lpeg/lpeg-1.0.2.tar.gz
+        sha256: 48d66576051b6c78388faad09b70493093264588fcd0f258ddaab1cdd4a15ffe
     cleanup:
       - '*'
 
@@ -250,7 +250,8 @@ modules:
       - -DUSE_BUNDLED=OFF
     post-install:
       # Install/fix AppData
-      - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
+      # - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
+      - sed -i "/<id>$FLATPAK_ID<\/id>/a \ \ <developer_name translatable=\"no\">Neovim contributors<\/developer_name>" ../runtime/nvim.appdata.xml
       - install -Dm644 ../runtime/nvim.appdata.xml -t /app/share/metainfo
       # Install icon
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
