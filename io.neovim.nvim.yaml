@@ -30,7 +30,7 @@ add-extensions:
 
 modules:
 
-  # deps from https://github.com/neovim/neovim/blob/v0.8.0/cmake.deps/CMakeLists.txt
+  # deps from https://github.com/neovim/neovim/blob/v0.10.0/cmake.deps/CMakeLists.txt
   # lua deps
   - name: LuaJIT
     no-autogen: true
@@ -45,7 +45,7 @@ modules:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
         # v2.1 branch
-        commit: 6c4826f12c4d33b8b978004bc681eb1eef2be977
+        commit: 75e92777988017fe47c5eb290998021bbf972d1f
     cleanup:
       - /bin
       - /include
@@ -63,8 +63,8 @@ modules:
       - install -Dm644 -t /app/share/lua/5.1/ re.lua
     sources:
       - type: archive
-        url: http://www.inf.puc-rio.br/~roberto/lpeg/lpeg-1.0.2.tar.gz
-        sha256: 48d66576051b6c78388faad09b70493093264588fcd0f258ddaab1cdd4a15ffe
+        url: https://github.com/neovim/deps/raw/d495ee6f79e7962a53ad79670cb92488abe0b9b4/opt/lpeg-1.1.0.tar.gz
+        sha256: 4b155d67d2246c1ffa7ad7bc466c1ea899bbc40fef0257cc9c03cecbaed4352a
     cleanup:
       - '*'
 
