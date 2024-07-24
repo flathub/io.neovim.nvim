@@ -246,7 +246,8 @@ modules:
     post-install:
       # Install/fix AppData
       # - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
-      - sed -i "/<id>$FLATPAK_ID<\/id>/a \ \ <developer_name translatable=\"no\">Neovim contributors<\/developer_name>" ../runtime/nvim.appdata.xml
+      - sed -i "/<id>$FLATPAK_ID<\/id>/a \ \ <developer_name translatable=\"no\">Neovim
+        contributors<\/developer_name>" ../runtime/nvim.appdata.xml
       - install -Dm644 ../runtime/nvim.appdata.xml -t /app/share/metainfo
       # Install icon
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
@@ -256,8 +257,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.10.0.tar.gz
-        sha256: 372ea2584b0ea2a5a765844d95206bda9e4a57eaa1a2412a9a0726bab750f828
+        url: https://github.com/neovim/neovim/archive/v0.10.1.tar.gz
+        sha256: edce96e79903adfcb3c41e9a8238511946325ea9568fde177a70a614501af689
         x-checker-data:
           is-main-source: true
           type: anitya
