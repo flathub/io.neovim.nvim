@@ -31,7 +31,7 @@ add-extensions:
 
 modules:
 
-  # deps from https://github.com/neovim/neovim/blob/v0.8.0/cmake.deps/CMakeLists.txt
+  # deps from https://github.com/neovim/neovim/blob/v0.10.0/cmake.deps/CMakeLists.txt
   # lua deps
   - name: LuaJIT
     no-autogen: true
@@ -39,14 +39,11 @@ modules:
       - PREFIX=/app
     make-install-args:
       - PREFIX=/app
-    post-install:
-      # Beta version doesn’t link the executable
-      - ln -s luajit-2.1.0-beta3 /app/bin/luajit
     sources:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
         # v2.1 branch
-        commit: 6c4826f12c4d33b8b978004bc681eb1eef2be977
+        commit: 75e92777988017fe47c5eb290998021bbf972d1f
     cleanup:
       - /bin
       - /include
@@ -64,10 +61,8 @@ modules:
       - install -Dm644 -t /app/share/lua/5.1/ re.lua
     sources:
       - type: archive
-        url: http://www.inf.puc-rio.br/~roberto/lpeg/lpeg-1.0.2.tar.gz
-        sha256: 48d66576051b6c78388faad09b70493093264588fcd0f258ddaab1cdd4a15ffe
-    cleanup:
-      - '*'
+        url: https://github.com/neovim/deps/raw/d495ee6f79e7962a53ad79670cb92488abe0b9b4/opt/lpeg-1.1.0.tar.gz
+        sha256: 4b155d67d2246c1ffa7ad7bc466c1ea899bbc40fef0257cc9c03cecbaed4352a
 
   - name: mpack-lua
     no-autogen: true
@@ -106,8 +101,8 @@ modules:
       - -DLUA_BUILD_TYPE=System
     sources:
       - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.45.0-0/luv-1.45.0-0.tar.gz
-        sha256: fa6c46fb09f88320afa7f88017efd7b0d2b3a0158c5ba5b6851340b0332a2b81
+        url: https://github.com/luvit/luv/releases/download/1.48.0-2/luv-1.48.0-2.tar.gz
+        sha256: 2c3a1ddfebb4f6550293a40ee789f7122e97647eede51511f57203de48c03b7a
         x-checker-data:
           type: anitya
           project-id: 21510
@@ -121,8 +116,8 @@ modules:
       - name: libuv
         sources:
           - type: archive
-            url: https://github.com/libuv/libuv/archive/v1.46.0.tar.gz
-            sha256: 7aa66be3413ae10605e1f5c9ae934504ffe317ef68ea16fdaa83e23905c681bd
+            url: https://github.com/libuv/libuv/archive/v1.48.0.tar.gz
+            sha256: 8c253adb0f800926a6cbd1c6576abae0bc8eb86a4f891049b72f9e5b7dc58f33
             x-checker-data:
               type: anitya
               project-id: 10784
@@ -162,8 +157,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://www.leonerd.org.uk/code/libvterm/libvterm-0.3.tar.gz
-        sha256: 61eb0d6628c52bdf02900dfd4468aa86a1a7125228bab8a67328981887483358
+        url: https://github.com/neovim/libvterm/archive/0a15c6e983b0db7ef8276e0792414a805d01bdaf.tar.gz
+        sha256: c4683e7a2d71c04781fd0ab7719a94202800e97a9e091514c16983bb732b0fa7
     cleanup:
       - /bin
       - /include
@@ -233,8 +228,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/tree-sitter/tree-sitter/archive/v0.20.8.tar.gz
-        sha256: 6181ede0b7470bfca37e293e7d5dc1d16469b9485d13f13a605baec4a8b1f791
+        url: https://github.com/tree-sitter/tree-sitter/archive/v0.22.6.tar.gz
+        sha256: e2b687f74358ab6404730b7fb1a1ced7ddb3780202d37595ecd7b20a8f41861f
         x-checker-data:
           type: anitya
           project-id: 142464
@@ -251,7 +246,9 @@ modules:
       - -DUSE_BUNDLED=OFF
     post-install:
       # Install/fix AppData
-      - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
+      # - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
+      - sed -i "/<id>$FLATPAK_ID<\/id>/a \ \ <developer_name translatable=\"no\">Neovim
+        contributors<\/developer_name>" ../runtime/nvim.appdata.xml
       - install -Dm644 ../runtime/nvim.appdata.xml -t /app/share/metainfo
       # Install icon
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
@@ -261,8 +258,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.9.4.tar.gz
-        sha256: 148356027ee8d586adebb6513a94d76accc79da9597109ace5c445b09d383093
+        url: https://github.com/neovim/neovim/archive/v0.10.1.tar.gz
+        sha256: edce96e79903adfcb3c41e9a8238511946325ea9568fde177a70a614501af689
         x-checker-data:
           is-main-source: true
           type: anitya
