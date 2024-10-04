@@ -39,10 +39,9 @@ modules:
     make-install-args:
       - PREFIX=/app
     sources:
-      - type: git
-        url: https://github.com/LuaJIT/LuaJIT.git
-        # v2.1 branch
-        commit: 75e92777988017fe47c5eb290998021bbf972d1f
+      - type: archive
+        url: https://github.com/LuaJIT/LuaJIT/archive/97813fb924edf822455f91a5fbbdfdb349e5984f.tar.gz
+        sha256: cbf1647acbd340c62b9c342dae43290762efa1b26d8bf8457f143fabf8ed86c7
     cleanup:
       - /bin
       - /include
