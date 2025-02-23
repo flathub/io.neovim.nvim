@@ -30,7 +30,7 @@ add-extensions:
 
 modules:
 
-  # deps from https://github.com/neovim/neovim/blob/v0.10.0/cmake.deps/CMakeLists.txt
+  # deps from https://github.com/neovim/neovim/blob/v0.10.4/cmake.deps/deps.txt
   # lua deps
   - name: LuaJIT
     no-autogen: true
@@ -40,8 +40,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/LuaJIT/LuaJIT/archive/97813fb924edf822455f91a5fbbdfdb349e5984f.tar.gz
-        sha256: cbf1647acbd340c62b9c342dae43290762efa1b26d8bf8457f143fabf8ed86c7
+        url: https://github.com/LuaJIT/LuaJIT/archive/75e92777988017fe47c5eb290998021bbf972d1f.tar.gz
+        sha256: 0f69288190024d732c67645e40ed5b137d67aa950fedf0f44a9ad0f3dba6d5d2
     cleanup:
       - /bin
       - /include
@@ -99,8 +99,8 @@ modules:
       - -DLUA_BUILD_TYPE=System
     sources:
       - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.50.0-1/luv-1.50.0-1.tar.gz
-        sha256: d867c3024d9c981d54f2edd83e13fd6dc1158f0608635f7b1c0f6b5586b5bc34
+        url: https://github.com/luvit/luv/releases/download/1.48.0-2/luv-1.48.0-2.tar.gz
+        sha256: 2c3a1ddfebb4f6550293a40ee789f7122e97647eede51511f57203de48c03b7a
         x-checker-data:
           type: anitya
           project-id: 21510
@@ -114,8 +114,8 @@ modules:
       - name: libuv
         sources:
           - type: archive
-            url: https://github.com/libuv/libuv/archive/v1.50.0.tar.gz
-            sha256: b1ec56444ee3f1e10c8bd3eed16ba47016ed0b94fe42137435aaf2e0bd574579
+            url: https://github.com/libuv/libuv/archive/v1.48.0.tar.gz
+            sha256: 8c253adb0f800926a6cbd1c6576abae0bc8eb86a4f891049b72f9e5b7dc58f33
             x-checker-data:
               type: anitya
               project-id: 10784
