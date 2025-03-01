@@ -273,6 +273,12 @@ modules:
     no-autogen: true
     make-install-args:
       - PREFIX=/app
+    post-install:
+      - echo "eita"; ls -la
+      # - install -Dm755 -t /usr/lib64/nvim/parsers libtree-sitter-vimdoc.so
+      # - install -Dm644 -t /usr/lib64/nvim/parsers libtree-sitter-vimdoc.a
+      - install -Dm755 -t "${FLATPAK_DEST}/lib64/nvim/parser" libtree-sitter-vimdoc.so
+      - install -Dm755 -t "${FLATPAK_DEST}/lib64/nvim/parser" libtree-sitter-vimdoc.a
     sources:
       - type: archive
         url: https://github.com/neovim/tree-sitter-vimdoc/archive/v3.0.0.tar.gz
@@ -307,7 +313,7 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DUSE_BUNDLED=OFF
+      # - -DUSE_BUNDLED=OFF
     post-install:
       # Install/fix AppData
       # - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
