@@ -30,7 +30,7 @@ add-extensions:
 
 modules:
 
-  # deps from https://github.com/neovim/neovim/blob/v0.10.4/cmake.deps/deps.txt
+  # deps from https://github.com/neovim/neovim/blob/v0.11.0/cmake.deps/deps.txt
   # lua deps
   - name: LuaJIT
     no-autogen: true
@@ -40,8 +40,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/LuaJIT/LuaJIT/archive/75e92777988017fe47c5eb290998021bbf972d1f.tar.gz
-        sha256: 0f69288190024d732c67645e40ed5b137d67aa950fedf0f44a9ad0f3dba6d5d2
+        url: https://github.com/luajit/luajit/archive/538a82133ad6fddfd0ca64de167c4aca3bc1a2da.tar.gz
+        sha256: 7acbc36be8f21072422eb9a5e5fc468d0eaa55bec1b70260d651e845684621e2
     cleanup:
       - /bin
       - /include
@@ -62,33 +62,33 @@ modules:
         url: https://github.com/neovim/deps/raw/d495ee6f79e7962a53ad79670cb92488abe0b9b4/opt/lpeg-1.1.0.tar.gz
         sha256: 4b155d67d2246c1ffa7ad7bc466c1ea899bbc40fef0257cc9c03cecbaed4352a
 
-  - name: mpack-lua
-    no-autogen: true
-    make-args:
-      - USE_SYSTEM_MPACK=yes
-      - LUA_INCLUDE=-I/app/include/luajit-2.1/
-    make-install-args:
-      - USE_SYSTEM_MPACK=yes
-    sources:
-      - type: archive
-        url: https://github.com/libmpack/libmpack-lua/archive/1.0.8.tar.gz
-        sha256: 6d84d272bff27800ba1d7b718d1005ac6bfe35c5f3a5bf5d07e6ffd7e341d560
-      - type: shell
-        commands:
-          - sed -i 's|/usr/lib|/app/lib|' ./Makefile
-    cleanup:
-      - '*'
-    modules:
-      - name: mpack
-        no-autogen: true
-        make-install-args:
-          - PREFIX=/app
-        sources:
-          - type: archive
-            url: https://github.com/libmpack/libmpack/archive/1.0.5.tar.gz
-            sha256: 4ce91395d81ccea97d3ad4cb962f8540d166e59d3e2ddce8a22979b49f108956
-        cleanup:
-          - '*'
+  # - name: mpack-lua
+  #   no-autogen: true
+  #   make-args:
+  #     - USE_SYSTEM_MPACK=yes
+  #     - LUA_INCLUDE=-I/app/include/luajit-2.1/
+  #   make-install-args:
+  #     - USE_SYSTEM_MPACK=yes
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/libmpack/libmpack-lua/archive/1.0.8.tar.gz
+  #       sha256: 6d84d272bff27800ba1d7b718d1005ac6bfe35c5f3a5bf5d07e6ffd7e341d560
+  #     - type: shell
+  #       commands:
+  #         - sed -i 's|/usr/lib|/app/lib|' ./Makefile
+  #   cleanup:
+  #     - '*'
+  #   modules:
+  #     - name: mpack
+  #       no-autogen: true
+  #       make-install-args:
+  #         - PREFIX=/app
+  #       sources:
+  #         - type: archive
+  #           url: https://github.com/libmpack/libmpack/archive/1.0.5.tar.gz
+  #           sha256: 4ce91395d81ccea97d3ad4cb962f8540d166e59d3e2ddce8a22979b49f108956
+  #       cleanup:
+  #         - '*'
 
   - name: luv
     buildsystem: cmake-ninja
@@ -99,42 +99,24 @@ modules:
       - -DLUA_BUILD_TYPE=System
     sources:
       - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.48.0-2/luv-1.48.0-2.tar.gz
-        sha256: 2c3a1ddfebb4f6550293a40ee789f7122e97647eede51511f57203de48c03b7a
+        url: https://github.com/luvit/luv/releases/download/1.50.0-1/luv-1.50.0-1.tar.gz
+        sha256: d867c3024d9c981d54f2edd83e13fd6dc1158f0608635f7b1c0f6b5586b5bc34
         x-checker-data:
           type: anitya
           project-id: 21510
           url-template: https://github.com/luvit/luv/releases/download/$version/luv-$version.tar.gz
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - '*.a'
-      - '*.la'
     modules:
       - name: libuv
         sources:
           - type: archive
-            url: https://github.com/libuv/libuv/archive/v1.48.0.tar.gz
-            sha256: 8c253adb0f800926a6cbd1c6576abae0bc8eb86a4f891049b72f9e5b7dc58f33
+            url: https://github.com/libuv/libuv/archive/v1.50.0.tar.gz
+            sha256: b1ec56444ee3f1e10c8bd3eed16ba47016ed0b94fe42137435aaf2e0bd574579
             x-checker-data:
               type: anitya
               project-id: 10784
               url-template: https://github.com/libuv/libuv/archive/v$version.tar.gz
 
   # lua deps end
-
-  - name: msgpack-c
-    buildsystem: cmake-ninja
-    sources:
-      - type: archive
-        url: https://github.com/msgpack/msgpack-c/releases/download/c-4.0.0/msgpack-c-4.0.0.tar.gz
-        sha256: 420fe35e7572f2a168d17e660ef981a589c9cbe77faa25eb34a520e1fcc032c8
-    cleanup:
-      - /include
-      - /lib/cmake
-      - /lib/pkgconfig
-      - '*.a'
-
   - name: unibilium
     no-autogen: true
     make-install-args:
@@ -143,11 +125,24 @@ modules:
       - type: archive
         url: https://github.com/neovim/unibilium/archive/v2.1.1.tar.gz
         sha256: 6f0ee21c8605340cfbb458cbd195b4d074e6d16dd0c0e12f2627ca773f3cabf1
+
+  - name: wasmtime
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -WASMTIME_FASTEST_RUNTIME=ON   
+      - -WASMTIME_DISABLE_ALL_FEATURES=ON 
+      - -WASMTIME_FEATURE_CRANELIFT=ON 
+    sources:
+      - type: archive
+        url: https://github.com/bytecodealliance/wasmtime/archive/v29.0.1.tar.gz
+        sha256: b94b6c6fd6aebaf05d4c69c1b12b5dc217b0d42c1a95f435b33af63dddfa5304
     cleanup:
       - /include
       - /lib/pkgconfig
       - /share/man
       - '*.la'
+
 
   - name: libvterm
     no-autogen: true
@@ -236,78 +231,6 @@ modules:
     cleanup:
       - /lib/pkgconfig
 
-  - name: tree-sitter-c
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: archive
-        url: https://github.com/tree-sitter/tree-sitter-c/archive/v0.21.3.tar.gz
-        sha256: 75a3780df6114cd37496761c4a7c9fd900c78bee3a2707f590d78c0ca3a24368
-    cleanup:
-      - /lib/pkgconfig
-
-  - name: tree-sitter-lua
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: archive
-        url: https://github.com/tree-sitter-grammars/tree-sitter-lua/archive/v0.1.0.tar.gz
-        sha256: 230cfcbfa74ed1f7b8149e9a1f34c2efc4c589a71fe0f5dc8560622f8020d722
-    cleanup:
-      - /lib/pkgconfig
-
-  - name: tree-sitter-vim
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: archive
-        url: https://github.com/neovim/tree-sitter-vim/archive/v0.4.0.tar.gz
-        sha256: 9f856f8b4a10ab43348550fa2d3cb2846ae3d8e60f45887200549c051c66f9d5
-    cleanup:
-      - /lib/pkgconfig
-
-  - name: tree-sitter-vimdoc
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    post-install:
-      - echo "eita"; ls -la
-      # - install -Dm755 -t /usr/lib64/nvim/parsers libtree-sitter-vimdoc.so
-      # - install -Dm644 -t /usr/lib64/nvim/parsers libtree-sitter-vimdoc.a
-      - install -Dm755 -t "${FLATPAK_DEST}/lib64/nvim/parser" libtree-sitter-vimdoc.so
-      - install -Dm755 -t "${FLATPAK_DEST}/lib64/nvim/parser" libtree-sitter-vimdoc.a
-    sources:
-      - type: archive
-        url: https://github.com/neovim/tree-sitter-vimdoc/archive/v3.0.0.tar.gz
-        sha256: a639bf92bf57bfa1cdc90ca16af27bfaf26a9779064776dd4be34c1ef1453f6c
-    cleanup:
-      - /lib/pkgconfig
-
-  - name: tree-sitter-query
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: archive
-        url: https://github.com/tree-sitter-grammars/tree-sitter-query/archive/v0.4.0.tar.gz
-        sha256: d3a423ab66dc62b2969625e280116678a8a22582b5ff087795222108db2f6a6e
-    cleanup:
-      - /lib/pkgconfig
-
-  - name: tree-sitter-markdown
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: archive
-        url: https://github.com/MDeiml/tree-sitter-markdown/archive/v0.2.3.tar.gz
-        sha256: 4909d6023643f1afc3ab219585d4035b7403f3a17849782ab803c5f73c8a31d5
-    cleanup:
-      - /lib/pkgconfig
-
   - name: neovim
     buildsystem: cmake-ninja
     builddir: true
@@ -328,8 +251,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.10.4.tar.gz
-        sha256: 10413265a915133f8a853dc757571334ada6e4f0aa15f4c4cc8cc48341186ca2
+        url: https://github.com/neovim/neovim/archive/v0.11.0.tar.gz
+        sha256: 6826c4812e96995d29a98586d44fbee7c9b2045485d50d174becd6d5242b3319
         x-checker-data:
           is-main-source: true
           type: anitya
