@@ -30,7 +30,7 @@ add-extensions:
 
 modules:
 
-  # deps from https://github.com/neovim/neovim/blob/v0.11.0/cmake.deps/deps.txt
+  # deps from https://github.com/neovim/neovim/blob/v0.11.1/cmake.deps/deps.txt
   # lua deps
   - name: LuaJIT
     no-autogen: true
@@ -262,8 +262,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.11.0.tar.gz
-        sha256: 6826c4812e96995d29a98586d44fbee7c9b2045485d50d174becd6d5242b3319
+        url: https://github.com/neovim/neovim/archive/v0.11.1.tar.gz
+        sha256: ffe7f9a7633ed895ff6adb1039af7516cd6453715c8889ad844b6fa39c3df443
         x-checker-data:
           is-main-source: true
           type: anitya
