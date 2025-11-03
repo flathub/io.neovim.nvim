@@ -12,14 +12,14 @@ sources:
       name: greenlet
       type: pypi
   - type: file
-    url: https://files.pythonhosted.org/packages/45/b1/ea4f68038a18c77c9467400d166d74c4ffa536f34761f7983a104357e614/msgpack-1.1.1.tar.gz
-    sha256: 77b79ce34a2bdab2594f490c8e80dd62a02d650b91a75159a63ec413b8d104cd
+    url: https://files.pythonhosted.org/packages/4d/f2/bfb55a6236ed8725a96b0aa3acbd0ec17588e6a2c3b62a93eb513ed8783f/msgpack-1.1.2.tar.gz
+    sha256: 3b60763c1373dd60f398488069bcdc703cd08a711477b5d480eecc9f9626f47e
     x-checker-data:
       name: msgpack
       type: pypi
   - type: file
-    url: https://files.pythonhosted.org/packages/09/84/c77ec45e084907e128710e08f5d7926723d7a67ccbebf27089309118807d/pynvim-0.5.2.tar.gz
-    sha256: 734a2432db8683519f58572617528ecb4a2f321bc7b27f034b3f9b2322c15615
+    url: https://files.pythonhosted.org/packages/04/d7/c4412e6219661fd8689cdd9553988f8ea38c151067d70c49436977688aa9/pynvim-0.6.0.tar.gz
+    sha256: 0ffcb879322d08f9e9061e1123dd58ba3a5ccfbd4999bb1157bac525822aa590
     x-checker-data:
       name: pynvim
       type: pypi
