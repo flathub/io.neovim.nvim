@@ -1,7 +1,7 @@
 app-id: io.neovim.nvim
 
 runtime: org.freedesktop.Sdk
-runtime-version: '24.08'
+runtime-version: "24.08"
 sdk: org.freedesktop.Sdk
 
 command: nvim-wrapper
@@ -29,7 +29,6 @@ add-extensions:
     no-autodownload: true
 
 modules:
-
   # deps from https://github.com/neovim/neovim/blob/v0.11.2/cmake.deps/deps.txt
   # lua deps
   - name: LuaJIT
@@ -40,14 +39,14 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/luajit/luajit/archive/538a82133ad6fddfd0ca64de167c4aca3bc1a2da.tar.gz
-        sha256: 7acbc36be8f21072422eb9a5e5fc468d0eaa55bec1b70260d651e845684621e2
+        url: https://github.com/luajit/luajit/archive/fdf2379ccba1eb68ff07f8bc48541568f5bbdfbf.tar.gz
+        sha256: 4f3fcc8a9a685ec2c449824b26d7c5f4b9c7faff851915cf13e68fb740c25048
     cleanup:
       - /bin
       - /include
       - /lib/pkgconfig
       - /share/man
-      - '*.a'
+      - "*.a"
 
   - name: lpeg
     no-autogen: true
@@ -71,13 +70,13 @@ modules:
       - USE_SYSTEM_MPACK=yes
     sources:
       - type: archive
-        url: https://github.com/libmpack/libmpack-lua/archive/1.0.8.tar.gz
-        sha256: 6d84d272bff27800ba1d7b718d1005ac6bfe35c5f3a5bf5d07e6ffd7e341d560
+        url: https://github.com/libmpack/libmpack-lua/archive/1.0.13.tar.gz
+        sha256: 436a6a3973207403d3f20082002c32e74c25d9149ff2516dc06b0b41514044bf
       - type: shell
         commands:
           - sed -i 's|/usr/lib|/app/lib|' ./Makefile
     cleanup:
-      - '*'
+      - "*"
     modules:
       - name: mpack
         no-autogen: true
@@ -88,7 +87,7 @@ modules:
             url: https://github.com/libmpack/libmpack/archive/1.0.5.tar.gz
             sha256: 4ce91395d81ccea97d3ad4cb962f8540d166e59d3e2ddce8a22979b49f108956
         cleanup:
-          - '*'
+          - "*"
 
   - name: luv
     buildsystem: cmake-ninja
@@ -127,7 +126,7 @@ modules:
       - /include
       - /lib/cmake
       - /lib/pkgconfig
-      - '*.a'
+      - "*.a"
 
   - name: unibilium
     no-autogen: true
@@ -150,9 +149,8 @@ modules:
       - /bin
       - /include
       - /lib/pkgconfig
-      - '*.a'
-      - '*.la'
-
+      - "*.a"
+      - "*.la"
 
   - name: libtermkey
     no-autogen: true
@@ -166,7 +164,7 @@ modules:
       - /include
       - /lib/pkgconfig
       - /share/man
-      - '*.la'
+      - "*.la"
 
   - name: wl-clipboard
     buildsystem: meson
@@ -205,7 +203,7 @@ modules:
         cleanup:
           - /include
           - /lib/pkgconfig
-          - '*.la'
+          - "*.la"
 
   - python3-pynvim.yaml
 
@@ -242,6 +240,90 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
 
+  # Tree-sitter parsers bundled
+  - name: tree-sitter-bash
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/nvim/parser
+      - cc -shared -fPIC src/parser.c -I src -o /app/lib/nvim/parser/bash.so
+    sources:
+      - type: archive
+        url: https://github.com/tree-sitter/tree-sitter-bash/archive/v0.25.0.tar.gz
+        sha256: 9d6bad618e712b51ff060515b0ce6872e33727148f35becb8aa3ad80044c2348
+
+  - name: tree-sitter-c
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/nvim/parser
+      - cc -shared -fPIC src/parser.c -I src -o /app/lib/nvim/parser/c.so
+    sources:
+      - type: archive
+        url: https://github.com/tree-sitter/tree-sitter-c/archive/v0.24.1.tar.gz
+        sha256: 25dd4bb3dec770769a407e0fc803f424ce02c494a56ce95fedc525316dcf9b48
+
+  - name: tree-sitter-lua
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/nvim/parser
+      - cc -shared -fPIC src/parser.c src/scanner.c -I src -o /app/lib/nvim/parser/lua.so
+    sources:
+      - type: archive
+        url: https://github.com/tree-sitter-grammars/tree-sitter-lua/archive/v0.4.0.tar.gz
+        sha256: b0977aced4a63bb75f26725787e047b8f5f4a092712c840ea7070765d4049559
+
+  - name: tree-sitter-markdown
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/nvim/parser
+      - cc -shared -fPIC tree-sitter-markdown/src/parser.c tree-sitter-markdown/src/scanner.c
+        -I tree-sitter-markdown/src -o /app/lib/nvim/parser/markdown.so
+      - cc -shared -fPIC tree-sitter-markdown-inline/src/parser.c tree-sitter-markdown-inline/src/scanner.c
+        -I tree-sitter-markdown-inline/src -o /app/lib/nvim/parser/markdown_inline.so
+    sources:
+      - type: archive
+        url: https://github.com/tree-sitter-grammars/tree-sitter-markdown/archive/v0.5.1.tar.gz
+        sha256: acaffe5a54b4890f1a082ad6b309b600b792e93fc6ee2903d022257d5b15e216
+
+  - name: tree-sitter-python
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/nvim/parser
+      - cc -shared -fPIC src/parser.c src/scanner.c -I src -o /app/lib/nvim/parser/python.so
+    sources:
+      - type: archive
+        url: https://github.com/tree-sitter/tree-sitter-python/archive/v0.25.0.tar.gz
+        sha256: 4609a3665a620e117acf795ff01b9e965880f81745f287a16336f4ca86cf270c
+
+  - name: tree-sitter-query
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/nvim/parser
+      - cc -shared -fPIC src/parser.c -I src -o /app/lib/nvim/parser/query.so
+    sources:
+      - type: archive
+        url: https://github.com/nvim-treesitter/tree-sitter-query/archive/v0.7.0.tar.gz
+        sha256: 79285847e8350ee9fe1f6f6c9eb64bc14320f70f7b9b65037193fc58f2638613
+
+  - name: tree-sitter-vim
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/nvim/parser
+      - cc -shared -fPIC src/parser.c src/scanner.c -I src -o /app/lib/nvim/parser/vim.so
+    sources:
+      - type: archive
+        url: https://github.com/tree-sitter-grammars/tree-sitter-vim/archive/v0.7.0.tar.gz
+        sha256: 44eabc31127c4feacda19f2a05a5788272128ff561ce01093a8b7a53aadcc7b2
+
+  - name: tree-sitter-vimdoc
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/nvim/parser
+      - cc -shared -fPIC src/parser.c -I src -o /app/lib/nvim/parser/vimdoc.so
+    sources:
+      - type: archive
+        url: https://github.com/neovim/tree-sitter-vimdoc/archive/v4.0.0.tar.gz
+        sha256: 8096794c0f090b2d74b7bff94548ac1be3285b929ec74f839bd9b3ff4f4c6a0b
+
   - name: neovim
     buildsystem: cmake-ninja
     builddir: true
@@ -272,11 +354,12 @@ modules:
       - type: file
         path: neovim-mark.svg
 
-  - name: wrapper
+  - name: ide-flatpak-wrapper
     buildsystem: meson
     sources:
-      - type: dir
-        path: wrapper
+      - type: git
+        commit: d581fd9b873acbf6fb22899aa388435f6c00f61a
+        url: https://github.com/flathub/ide-flatpak-wrapper
       - type: file
         path: neovim-first-run.txt
       - type: file
