@@ -1,7 +1,7 @@
 app-id: io.neovim.nvim
 
 runtime: org.freedesktop.Sdk
-runtime-version: "25.08"
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 
 command: nvim-wrapper
@@ -46,7 +46,7 @@ modules:
       - /include
       - /lib/pkgconfig
       - /share/man
-      - "*.a"
+      - '*.a'
 
   - name: lpeg
     no-autogen: true
@@ -76,7 +76,7 @@ modules:
         commands:
           - sed -i 's|/usr/lib|/app/lib|' ./Makefile
     cleanup:
-      - "*"
+      - '*'
     modules:
       - name: mpack
         no-autogen: true
@@ -87,7 +87,7 @@ modules:
             url: https://github.com/libmpack/libmpack/archive/1.0.5.tar.gz
             sha256: 4ce91395d81ccea97d3ad4cb962f8540d166e59d3e2ddce8a22979b49f108956
         cleanup:
-          - "*"
+          - '*'
 
   - name: luv
     buildsystem: cmake-ninja
@@ -98,8 +98,8 @@ modules:
       - -DLUA_BUILD_TYPE=System
     sources:
       - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.51.0-1/luv-1.51.0-1.tar.gz
-        sha256: dc706d9141c185bdce08b6fc8a9d4df05c3ac3676809ee4e9e37e1553d821237
+        url: https://github.com/luvit/luv/releases/download/1.51.0-2/luv-1.51.0-2.tar.gz
+        sha256: bac6e88c883b02c10b3c08a236443b866bae1c77bcd834a2e8683bc925d12d8c
         x-checker-data:
           type: anitya
           project-id: 21510
@@ -126,7 +126,7 @@ modules:
       - /include
       - /lib/cmake
       - /lib/pkgconfig
-      - "*.a"
+      - '*.a'
 
   - name: unibilium
     no-autogen: true
@@ -149,8 +149,8 @@ modules:
       - /bin
       - /include
       - /lib/pkgconfig
-      - "*.a"
-      - "*.la"
+      - '*.a'
+      - '*.la'
 
   - name: libtermkey
     no-autogen: true
@@ -164,7 +164,7 @@ modules:
       - /include
       - /lib/pkgconfig
       - /share/man
-      - "*.la"
+      - '*.la'
 
   - name: wl-clipboard
     buildsystem: meson
@@ -203,7 +203,7 @@ modules:
         cleanup:
           - /include
           - /lib/pkgconfig
-          - "*.la"
+          - '*.la'
 
   - python3-pynvim.yaml
 
@@ -213,8 +213,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/tree-sitter/tree-sitter/archive/v0.25.8.tar.gz
-        sha256: 178b575244d967f4920a4642408dc4edf6de96948d37d7f06e5b78acee9c0b4e
+        url: https://github.com/tree-sitter/tree-sitter/archive/v0.26.3.tar.gz
+        sha256: 7f4a7cf0a2cd217444063fe2a4d800bc9d21ed609badc2ac20c0841d67166550
         x-checker-data:
           type: anitya
           project-id: 142464
@@ -234,8 +234,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/JuliaStrings/utf8proc.git
-        tag: v2.11.0
-        commit: d7bf128df773c2a1a7242eb80e51e91a769fc985
+        tag: v2.11.3
+        commit: e5e799221b45bbb90f5fdc5c69b6b8dfbf017e78
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -344,8 +344,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.11.5.tar.gz
-        sha256: c63450dfb42bb0115cd5e959f81c77989e1c8fd020d5e3f1e6d897154ce8b771
+        url: https://github.com/neovim/neovim/archive/v0.11.6.tar.gz
+        sha256: d1c8e3f484ed1e231fd5f48f53b7345b628e52263d5eef489bb8b73ca8d90fca
         x-checker-data:
           is-main-source: true
           type: anitya
