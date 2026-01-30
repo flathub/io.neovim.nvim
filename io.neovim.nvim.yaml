@@ -98,8 +98,8 @@ modules:
       - -DLUA_BUILD_TYPE=System
     sources:
       - type: archive
-        url: https://github.com/luvit/luv/releases/download/1.51.0-1/luv-1.51.0-1.tar.gz
-        sha256: dc706d9141c185bdce08b6fc8a9d4df05c3ac3676809ee4e9e37e1553d821237
+        url: https://github.com/luvit/luv/releases/download/1.51.0-2/luv-1.51.0-2.tar.gz
+        sha256: bac6e88c883b02c10b3c08a236443b866bae1c77bcd834a2e8683bc925d12d8c
         x-checker-data:
           type: anitya
           project-id: 21510
@@ -234,8 +234,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/JuliaStrings/utf8proc.git
-        tag: v2.11.0
-        commit: d7bf128df773c2a1a7242eb80e51e91a769fc985
+        tag: v2.11.3
+        commit: e5e799221b45bbb90f5fdc5c69b6b8dfbf017e78
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -344,8 +344,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.11.5.tar.gz
-        sha256: c63450dfb42bb0115cd5e959f81c77989e1c8fd020d5e3f1e6d897154ce8b771
+        url: https://github.com/neovim/neovim/archive/v0.11.6.tar.gz
+        sha256: d1c8e3f484ed1e231fd5f48f53b7345b628e52263d5eef489bb8b73ca8d90fca
         x-checker-data:
           is-main-source: true
           type: anitya
