@@ -335,6 +335,8 @@ modules:
       # - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
       - sed -i "/<id>$FLATPAK_ID<\/id>/a \ \ <developer_name translatable=\"no\">Neovim
         contributors<\/developer_name>" ../runtime/nvim.appdata.xml
+      - sed -i "/<developer_name/a \ \ <url type=\"vcs-browser\">https://github.com/neovim/neovim</url>"
+        ../runtime/nvim.appdata.xml
       - install -Dm644 ../runtime/nvim.appdata.xml -t /app/share/metainfo
       # Install icon
       - install -Dm644 ../neovim-mark.svg /app/share/icons/hicolor/scalable/apps/nvim.svg
