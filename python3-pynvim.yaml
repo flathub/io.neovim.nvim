@@ -6,8 +6,8 @@ build-commands:
     --prefix=${FLATPAK_DEST} "pynvim" --no-build-isolation
 sources:
   - type: file
-    url: https://files.pythonhosted.org/packages/a3/51/1664f6b78fc6ebbd98019a1fd730e83fa78f2db7058f72b1463d3612b8db/greenlet-3.3.2.tar.gz
-    sha256: 2eaf067fc6d886931c7962e8c6bede15d2f01965560f3359b27c80bde2d151f2
+    url: https://files.pythonhosted.org/packages/86/94/a5935717b307d7c71fe877b52b884c6af707d2d2090db118a03fbd799369/greenlet-3.4.0.tar.gz
+    sha256: f50a96b64dafd6169e595a5c56c9146ef80333e67d4476a65a9c55f400fc22ff
     x-checker-data:
       name: greenlet
       type: pypi

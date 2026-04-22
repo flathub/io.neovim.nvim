@@ -346,8 +346,8 @@ modules:
       - install -d "${FLATPAK_DEST}/tools"
     sources:
       - type: archive
-        url: https://github.com/neovim/neovim/archive/v0.12.1.tar.gz
-        sha256: 41898a5073631bc8fd9ac43476b811c05fb3b88ffb043d4fbb9e75e478457336
+        url: https://github.com/neovim/neovim/archive/v0.12.2.tar.gz
+        sha256: ef9f58da7d687ed4d1dad9715542bf0dabdeedbfe8089e2ce17fff21b920a268
         x-checker-data:
           is-main-source: true
           type: anitya
