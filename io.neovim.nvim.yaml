@@ -21,6 +21,7 @@ finish-args:
   - --socket=fallback-x11
   - --share=ipc
 
+
 add-extensions:
   io.neovim.nvim.tool:
     directory: tools
@@ -327,7 +328,7 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      # - -DUSE_BUNDLED=OFF
+      - -DUSE_BUNDLED=OFF
     post-install:
       # Install/fix AppData
       # - sed -i "s|<id>nvim</id>|<id>$FLATPAK_ID</id>|" ../runtime/nvim.appdata.xml
