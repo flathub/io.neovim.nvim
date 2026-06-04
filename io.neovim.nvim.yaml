@@ -29,7 +29,7 @@ add-extensions:
     no-autodownload: true
 
 modules:
-  # deps from https://github.com/neovim/neovim/blob/v0.11.2/cmake.deps/deps.txt
+  # deps from https://github.com/neovim/neovim/blob/v0.12.2/cmake.deps/deps.txt
   # lua deps
   - name: LuaJIT
     no-autogen: true
@@ -39,8 +39,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/luajit/luajit/archive/fdf2379ccba1eb68ff07f8bc48541568f5bbdfbf.tar.gz
-        sha256: 4f3fcc8a9a685ec2c449824b26d7c5f4b9c7faff851915cf13e68fb740c25048
+        url: https://github.com/luajit/luajit/archive/fbb36bb6bfa88716a47c58bcf9ce9f2ef752abac.tar.gz
+        sha256: e60cd2f3057aa39d33d1c895a20087ab54494d9a1ca45aa488ff0378af42df48
     cleanup:
       - /bin
       - /include
@@ -129,13 +129,11 @@ modules:
       - '*.a'
 
   - name: unibilium
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
+    buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/neovim/unibilium/archive/v2.1.1.tar.gz
-        sha256: 6f0ee21c8605340cfbb458cbd195b4d074e6d16dd0c0e12f2627ca773f3cabf1
+        url: https://github.com/neovim/unibilium/archive/v2.1.2.tar.gz
+        sha256: 370ecb07fbbc20d91d1b350c55f1c806b06bf86797e164081ccc977fc9b3af7a
 
   - name: libvterm
     no-autogen: true
@@ -268,8 +266,8 @@ modules:
       - cc -shared -fPIC src/parser.c src/scanner.c -I src -o /app/lib/nvim/parser/lua.so
     sources:
       - type: archive
-        url: https://github.com/tree-sitter-grammars/tree-sitter-lua/archive/v0.4.0.tar.gz
-        sha256: b0977aced4a63bb75f26725787e047b8f5f4a092712c840ea7070765d4049559
+        url: https://github.com/tree-sitter-grammars/tree-sitter-lua/archive/v0.5.0.tar.gz
+        sha256: cf01b93f4b61b96a6d27942cf28eeda4cbce7d503c3bef773a8930b3d778a2d9
 
   - name: tree-sitter-markdown
     buildsystem: simple
@@ -281,8 +279,8 @@ modules:
         -I tree-sitter-markdown-inline/src -o /app/lib/nvim/parser/markdown_inline.so
     sources:
       - type: archive
-        url: https://github.com/tree-sitter-grammars/tree-sitter-markdown/archive/v0.5.1.tar.gz
-        sha256: acaffe5a54b4890f1a082ad6b309b600b792e93fc6ee2903d022257d5b15e216
+        url: https://github.com/tree-sitter-grammars/tree-sitter-markdown/archive/v0.5.3.tar.gz
+        sha256: df845b1ab7c7c163ec57d7fa17170c92b04be199bddab02523636efec5224ab6
 
   - name: tree-sitter-python
     buildsystem: simple
@@ -301,8 +299,8 @@ modules:
       - cc -shared -fPIC src/parser.c -I src -o /app/lib/nvim/parser/query.so
     sources:
       - type: archive
-        url: https://github.com/nvim-treesitter/tree-sitter-query/archive/v0.7.0.tar.gz
-        sha256: 79285847e8350ee9fe1f6f6c9eb64bc14320f70f7b9b65037193fc58f2638613
+        url: https://github.com/tree-sitter-grammars/tree-sitter-query/archive/v0.8.0.tar.gz
+        sha256: c2b23b9a54cffcc999ded4a5d3949daf338bebb7945dece229f832332e6e6a7d
 
   - name: tree-sitter-vim
     buildsystem: simple
@@ -311,8 +309,8 @@ modules:
       - cc -shared -fPIC src/parser.c src/scanner.c -I src -o /app/lib/nvim/parser/vim.so
     sources:
       - type: archive
-        url: https://github.com/tree-sitter-grammars/tree-sitter-vim/archive/v0.7.0.tar.gz
-        sha256: 44eabc31127c4feacda19f2a05a5788272128ff561ce01093a8b7a53aadcc7b2
+        url: https://github.com/tree-sitter-grammars/tree-sitter-vim/archive/v0.8.1.tar.gz
+        sha256: 93cafb9a0269420362454ace725a118ff1c3e08dcdfdc228aa86334b54d53c2a
 
   - name: tree-sitter-vimdoc
     buildsystem: simple
@@ -321,8 +319,8 @@ modules:
       - cc -shared -fPIC src/parser.c -I src -o /app/lib/nvim/parser/vimdoc.so
     sources:
       - type: archive
-        url: https://github.com/neovim/tree-sitter-vimdoc/archive/v4.0.0.tar.gz
-        sha256: 8096794c0f090b2d74b7bff94548ac1be3285b929ec74f839bd9b3ff4f4c6a0b
+        url: https://github.com/neovim/tree-sitter-vimdoc/archive/v4.1.0.tar.gz
+        sha256: 020e8f117f648c8697fca967995c342e92dbd81dab137a115cc7555207fbc84f
 
   - name: neovim
     buildsystem: cmake-ninja
