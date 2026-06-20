@@ -14,6 +14,7 @@ finish-args:
   - --filesystem=host
   - --filesystem=/tmp
   - --filesystem=/var/tmp
+  - --env=TERMINFO_DIRS='/var/run/host/usr/share/terminfo:/usr/share/terminfo'
   # Plugin updates
   - --share=network
   # Clipboard access
