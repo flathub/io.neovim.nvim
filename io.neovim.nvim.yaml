@@ -3,6 +3,9 @@ app-id: io.neovim.nvim
 runtime: org.freedesktop.Sdk
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.llvm22
 
 command: nvim-wrapper
 rename-desktop-file: nvim.desktop
@@ -208,9 +211,19 @@ modules:
 
   - name: tree-sitter
     no-autogen: true
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm22/bin
+      env:
+        CARGO_HOME: /run/build/tree-sitter/cargo
+        LIBCLANG_PATH: /usr/lib/sdk/llvm22/lib
     make-install-args:
       - PREFIX=/app
+    build-commands:
+      - cargo --frozen build --release --package tree-sitter-cli --bin tree-sitter
+    post-install:
+      - install -Dm755 target/release/tree-sitter -t /app/bin
     sources:
+      - tree-sitter-cargo-sources.yml
       - type: archive
         url: https://github.com/tree-sitter/tree-sitter/archive/v0.26.13.tar.gz
         sha256: ece24c3c5e2a76384075e830c7139b59fce8fb01e4ef8436fab08bbe10444c89
