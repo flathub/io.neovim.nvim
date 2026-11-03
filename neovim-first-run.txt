@@ -8,24 +8,17 @@ https://www.flathub.org
 Please open issues under: https://github.com/flathub/@FLATPAK_ID@/issues
 
 
-This version is running inside a container and is therefore not able
-to access SDKs on your host system!
+This version runs inside a sandbox and can't see the compilers, language
+servers and tools installed on your system.
 
-This flatpak provides a standard development environment (gcc, python, etc).
-To see what's available:
+Your config goes in ~/.var/app/@FLATPAK_ID@/config/nvim
 
-  $ flatpak run --command=sh @FLATPAK_ID@
-  $ ls /usr/bin (shared runtime)
-  $ ls /app/bin (bundled with this flatpak)
+To add Node.js, Rust, Go and others, install SDK extensions and enable them:
 
-To get support for additional languages, you have to install SDK extensions, e.g.
+  $ flatpak install flathub org.freedesktop.Sdk.Extension.node24
+  $ flatpak override --user --env=FLATPAK_ENABLE_SDK_EXT=node24 @FLATPAK_ID@
 
-  $ flatpak install flathub org.freedesktop.Sdk.Extension.dotnet
-  $ flatpak install flathub org.freedesktop.Sdk.Extension.golang
-  $ FLATPAK_ENABLE_SDK_EXT=dotnet,golang flatpak run @FLATPAK_ID@
+Use `flatpak search Sdk.Extension` to find others.
 
-You can use
-
-  $ flatpak search <TEXT>
-
-to find others.
+More, including how to run commands on the host:
+https://github.com/flathub/@FLATPAK_ID@#readme
