@@ -222,6 +222,32 @@ modules:
     cleanup:
       - /lib/pkgconfig
 
+  - name: tree-sitter-cli
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 tree-sitter /app/bin/tree-sitter
+    sources:
+      - type: archive
+        url: https://github.com/tree-sitter/tree-sitter/releases/download/v0.27.1/tree-sitter-cli-linux-x64.zip
+        sha256: c7e686aec16ba17053c2e6fd87600ccb10cf8ba3d055756b17e756d538e11114
+        strip-components: 0
+        only-arches:
+          - x86_64
+        x-checker-data:
+          type: anitya
+          project-id: 142464
+          url-template: https://github.com/tree-sitter/tree-sitter/releases/download/v$version/tree-sitter-cli-linux-x64.zip
+      - type: archive
+        url: https://github.com/tree-sitter/tree-sitter/releases/download/v0.27.1/tree-sitter-cli-linux-arm64.zip
+        sha256: 3c0d0113cae3fea36f2336c271cbdacbcdb349edb006319155652b9386803c55
+        strip-components: 0
+        only-arches:
+          - aarch64
+        x-checker-data:
+          type: anitya
+          project-id: 142464
+          url-template: https://github.com/tree-sitter/tree-sitter/releases/download/v$version/tree-sitter-cli-linux-arm64.zip
+
   - name: utf8proc
     buildsystem: cmake-ninja
     config-opts:
